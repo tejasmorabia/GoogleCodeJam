@@ -1,6 +1,11 @@
 package dynamicProgramming;
 
-
+/**
+ * Problem reference http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/
+ * 
+ * @author Tejas Morabia
+ *
+ */
 public class LongestSubSequence {
 	char[] firstSeq;
 	char[] secondSeq;
@@ -47,14 +52,12 @@ public class LongestSubSequence {
 
 		for(int j=1;j<dynamic[0].length;j++) {
 			for (int i=1;i<dynamic.length;i++) {
-				System.out.println("CurrentFirst:"+i+":"+first[i-1]);
-				System.out.println("CurrentSecond:"+j+":"+second[j-1]);
 				if(first[i-1] == second[j-1]) {
 					dynamic[i][j] = dynamic[i-1][j-1] +1;
 				} else {
 					dynamic[i][j] = dynamic[i][j-1] >= dynamic[i-1][j] ? dynamic[i][j-1]:dynamic[i-1][j];  
 				}
-				print(dynamic);
+				//print(dynamic);
 			}
 		}
 		
@@ -78,6 +81,18 @@ public class LongestSubSequence {
 		String secondSeq="AEDFHR";
 		LongestSubSequence l1 = new LongestSubSequence(firstSeq.toCharArray(), secondSeq.toCharArray());
 		System.out.println(l1.getLongest());
+		
+		String firstSeq1="A";
+		String secondSeq1="A";
+		LongestSubSequence l2 = new LongestSubSequence(firstSeq1.toCharArray(), secondSeq1.toCharArray());
+		System.out.println(l2.getLongest());
+		
+		String firstSeq2="ABCDGH";
+		String secondSeq2="XYXYXY";
+		LongestSubSequence l3 = new LongestSubSequence(firstSeq2.toCharArray(), secondSeq2.toCharArray());
+		System.out.println(l3.getLongest());
+
+
 	}
 
 }
